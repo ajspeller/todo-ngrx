@@ -27,12 +27,14 @@ export function todoReducer(state = [], action: ActionWithPayload<TodoPayload>) 
     case UPDATE_TODO:
       return state.map((item, index) => {
         return index === action.payload.index
-          ? Object.assign({}, item, { value: action.payload.newValue });
+          ? Object.assign({}, item, { value: action.payload.newValue })
+          : item;
       });
     case TOGGLE_DONE:
       return state.map((item, index) => {
         return index === action.payload.index
-          ? Object.assign({}, item, { done: !action.payload.done});
+          ? Object.assign({}, item, { done: !action.payload.done})
+          : item;
       });
     default:
       return state;

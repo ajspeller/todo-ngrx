@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-todo-ui',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
   styleUrls: ['./todo-ui.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoUiComponent implements OnInit {
+export class TodoUiComponent {
 
   @Input() todos;
   @Input() todo: string;
@@ -18,34 +18,5 @@ export class TodoUiComponent implements OnInit {
   @Output() cancelEdit = new EventEmitter<any>();
   @Output() updateTodo = new EventEmitter<any>();
   @Output() toggleDone = new EventEmitter<any>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  add(todo) {
-    this.addTodo.emit(todo);
-  }
-
-  update(todo) {
-    this.updateTodo.emit(todo);
-  }
-
-  edit(todo, index) {
-    this.editTodo.emit({todo, index});
-  }
-
-  delete(index) {
-    this.deleteTodo.emit(index);
-  }
-
-  toggle(todo, index) {
-    this.toggleDone.emit({todo, index});
-  }
-
-  cancel() {
-    this.cancelEdit.emit();
-  }
 
 }

@@ -1,18 +1,18 @@
-<button (click)="add(todo)"
+<button (click)="addTodo.emit(todo)"
         [disabled]="!todo"
         *ngIf="!editing">Add Todo</button>
 
-<button (click)="update(todo)"
+<button (click)="updateTodo.emit(todo)"
         *ngIf="editing">Update</button>
 
-<button (click)="cancel()"
+<button (click)="cancelEdit.emit()"
         *ngIf="editing">Cancel</button>
 
 <ul>
   <li *ngFor="let todo of todos; let idx = index">
     <span [class.done]="todo.done">{{ todo.value }}</span>
-    <button (click)="edit(todo, idx)">Edit</button>
-    <button (click)="toggle(todo, idx)">Toggle Done</button>
-    <button (click)="delete(idx)">x</button>
+    <button (click)="editTodo.emit({todo: todo, index: idx})">Edit</button>
+    <button (click)="toggleDone.emit({todo: todo, index: idx})">Toggle Done</button>
+    <button (click)="deleteTodo.emit(idx)">x</button>
   </li>
 </ul>

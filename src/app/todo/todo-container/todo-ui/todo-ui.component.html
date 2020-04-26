@@ -1,1 +1,18 @@
-<p>todo-ui works!</p>
+<button (click)="add(todo)"
+        [disabled]="!todo"
+        *ngIf="!editing">Add Todo</button>
+
+<button (click)="update(todo)"
+        *ngIf="editing">Update</button>
+
+<button (click)="cancel()"
+        *ngIf="editing">Cancel</button>
+
+<ul>
+  <li *ngFor="let todo of todos; let idx = index">
+    <span [class.done]="todo.done">{{ todo.value }}</span>
+    <button (click)="edit(todo, idx)">Edit</button>
+    <button (click)="toggle(todo, idx)">Toggle Done</button>
+    <button (click)="delete(idx)">x</button>
+  </li>
+</ul>

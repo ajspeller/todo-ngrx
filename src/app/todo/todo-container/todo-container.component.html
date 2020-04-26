@@ -1,0 +1,38 @@
+<!-- (addTodo)=""
+(deleteTodo)=""
+(editTodo)=""
+(cancelEdit)=""
+(updateTodo)=""
+(toggleDone)="" -->
+<app-todo-ui [todos$]="todos$"
+></app-todo-ui>
+
+
+<div>
+  {{ todo }}
+  {{ !todo }}
+</div>
+
+<input [(ngModel)]="todo" placeholder="Your Todo">
+
+<button (click)="addTodo(todo)"
+        [disabled]="!todo"
+        *ngIf="!editing">Add Todo</button>
+
+<button (click)="updateTodo(todo)"
+        *ngIf="editing">Update</button>
+
+<button (click)="cancelEdit()"
+        *ngIf="editing">Cancel</button>
+
+<ul>
+  <li *ngFor="let todo of (todos$ | async); let idx = index">
+    <span [class.done]="todo.done">{{ todo.value }}</span>
+    <button (click)="editTodo(todo, idx)">Edit</button>
+    <button (click)="toggleDone(todo, idx)">Toggle Done</button>
+    <button (click)="deleteTodo(idx)">x</button>
+  </li>
+</ul>
+
+<app-todo-container></app-todo-container>
+
